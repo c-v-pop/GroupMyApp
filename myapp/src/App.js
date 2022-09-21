@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 //import { CreatePost } from './Pages/Login/CreatePost';
-import { Route ,Routes, BrowserRouter} from 'react-router-dom';
+import { Route ,Routes} from 'react-router-dom';
 
 
 // Importing pages 
@@ -20,7 +20,6 @@ function App() {
 
   return (
     <div>
-    <BrowserRouter>
     <Routes >
       <Route path='/login' element={ <Login/>} />
       <Route path='/register' element={ <Register />} />
@@ -31,7 +30,6 @@ function App() {
       <Route path='/Dashboard' element={ <Dashboard /> } />
       <Route path='/Preferences' element={ <Preferences /> } />
     </Routes>
-    </BrowserRouter>
     </div>
     );
     

@@ -22,7 +22,7 @@ const RegisterForm = () => {
             }
             else
             {
-                navigate("/Dashboard")
+                navigate("/Login")
             }
         });
     }

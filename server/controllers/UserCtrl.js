@@ -1,5 +1,7 @@
 import User from "../models/userModel.js";
- 
+import bcrypt from "bcrypt";
+
+
 export const getAllUsers = async (req, res) => {
     try {
         const users = await User.findAll();
@@ -23,8 +25,15 @@ export const getUserById = async (req, res) => {
 }
  
 export const createUser = async (req, res) => {
+    const {name, password}= req.body;
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt)
     try {
-        await User.create(req.body);
+        await User.create({
+            name: name,
+            password: hashedPassword,
+        });
         res.json({
             "message": "User Created",
              errors:false
