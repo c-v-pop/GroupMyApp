@@ -1,6 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 
 export const getAllUsers = async (req, res) => {
     try {
@@ -75,4 +75,45 @@ export const deleteUser = async (req, res) => {
         res.json({ message: error.message });
     }  
 }
+
+export const Login = async (req, res) => {
+    console.log(req.body)
+    try {
+      const user =   await User.findOne({
+            where: {
+                name: req.body.username
+                
+            }
+        });
+        if(user){
+            console.log(user)
+            bcrypt.compare(req.body.password, user.password).then(valid=>{
+                if(valid){
+                    const token = jwt.sign(
+                        {userId: user.id},
+                        "ran",
+                        {expiresIn: '24h'});
+                        res.status(200).json({
+                            userId: user.id,
+                            token: token
+                        });
+                }else{
+                    res.status(400).json({
+                        message : "invalid password "
+                    })
+                }
+            })
+        }else{
+            res.status(400).json({
+                message : "invalid user name"
+            })
+        }
+    } catch (error) {
+        res.status(500).json({
+            message : error
+        })
+    }
+}
  
+
+

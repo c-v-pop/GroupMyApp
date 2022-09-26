@@ -10,9 +10,6 @@ const User = db.define('users',{
     password:{
         type: DataTypes.STRING
     },
-    email:{
-        type: DataTypes.STRING
-    }
 },{
     freezeTableName: true
 });

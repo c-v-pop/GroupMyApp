@@ -5,7 +5,8 @@ import {
     createUser,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    Login
 } from "../controllers/UserCtrl.js";
  
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get('/:id', getUserById);
 router.post('/', createUser);
 router.patch('/:id', updateUser);
 router.delete('/:id', deleteUser);
+router.post('/login', Login);
  
 export default router;

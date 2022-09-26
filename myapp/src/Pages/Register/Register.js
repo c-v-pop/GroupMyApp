@@ -10,7 +10,7 @@ const RegisterForm = () => {
     const navigate = useNavigate();
 
     const saveUser = async (e) => {
-        console.log('triggered')
+        console.log('User created')
         e.preventDefault();
         await axios.post('http://localhost:5000/users',{
             name: name,
