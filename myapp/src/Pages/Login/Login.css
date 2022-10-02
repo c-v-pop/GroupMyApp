@@ -12,6 +12,10 @@ body {
     flex-direction: column;
     gap: 20px;
 }
+h1 {
+    font-weight: 850;
+    color: darkseagreen;
+}
 .cover{
     background-color: floralwhite;
     background-image: url(https://groupomania.stephane-chimy.com/static/media/icon.500ae8c5.png);
@@ -31,7 +35,7 @@ input {
     border: none;
     background-color: burlywood;
     height: 4em;
-    width: 80%;
+    width: 220px;
     border-radius: 0.25em;
     text-align: center;
 }
@@ -39,8 +43,11 @@ input:focus{
     outline-color: darkseagreen;
 }
 
-.login-btn {
-    width: 40%;
+.redirect_button {
+    margin: 20px 0px 5px 0px;
+    width: 220px;
+    text-decoration: none;
+    color: black;
     height: 3em;
     background-color: darkseagreen;
     display: flex;
@@ -50,6 +57,7 @@ input:focus{
     border-radius: 0.25em;
     cursor: pointer;
 }
-.login-btn:hover {
-    transform: scale(1.25);
+.redirect_button:hover {
+    transform: scale(1.20);
+    transition: 0.7s ease-in;
 }

@@ -30,12 +30,12 @@ const RegisterForm = () => {
     return (
         <form onSubmit={ saveUser }>
         <div className="cover">
-            <label>Register</label>
+            <h1>REGISTER</h1>
             <input onChange={ (e) => setName(e.target.value) } type="text" placeholder="username"></input>
             <input onChange={ (e) => setPassword(e.target.value) } type="password" placeholder="password"></input>
             <button className="register-btn">Register</button>
             
-            <Link to='/login' className="redirect_button">Login</Link>
+            <Link to='/login' className="register-btn">Login</Link>
         </div>
         </form>
     )
