@@ -2,7 +2,7 @@ import React from 'react'
 
 const Index = () => {
   return (
-    <div>So we can smoke this bluuunt</div>
+    <div>This is index</div>
   )
 }
 

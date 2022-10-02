@@ -7,21 +7,33 @@ const Login = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState(false);
+
     const navigate = useNavigate();
-    const login= async ()=>{
-     await axios.post('http://localhost:5000/users/login',{
-        username,
-        password
-      }).then((res) => {
-        if (res.data.errors)
-        {
-            console.log(res.data.message);
-        }
-        else
-        {
-            navigate("/Dashboard")
-        } 
-    });
+
+    const login = async ()=> {
+
+      if(username === "" || password === "")
+      {
+        alert('Insert credentials');
+      }
+      else
+      {
+
+        await axios.post('http://localhost:5000/users/login',{
+          username,
+          password
+        }).then((res) => {
+          if (res.data.errors)
+          {
+              console.log(res.data.message);
+          }
+          else
+          {
+              navigate("/Dashboard")
+          } 
+       });
+
+      }
     }
     return (
         <div className="cover"> <h1>LOGIN</h1>

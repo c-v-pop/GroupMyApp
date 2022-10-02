@@ -12,6 +12,12 @@ const RegisterForm = () => {
     const saveUser = async (e) => {
         console.log('User created')
         e.preventDefault();
+        if(name === "" || password === "")
+        {
+          alert('Insert credentials');
+        }
+        else
+        {
         await axios.post('http://localhost:5000/users',{
             name: name,
             password: password
@@ -25,7 +31,7 @@ const RegisterForm = () => {
                 navigate("/Login")
             }
         });
-    }
+    }}
 
     return (
         <form onSubmit={ saveUser }>
