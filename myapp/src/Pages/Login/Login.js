@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import "./Login.css"
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ setToken }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState(false);
-
-    const navigate = useNavigate();
 
     const login = async ()=> {
 
@@ -25,11 +23,13 @@ const Login = () => {
         }).then((res) => {
           if (res.data.errors)
           {
-              console.log(res.data.message);
+            console.log(res.data);
           }
           else
           {
-              navigate("/Dashboard")
+            console.log(setToken);
+            setToken(res.data.token);
+            window.location.href = "/Dashboard";
           } 
        });
 
@@ -42,7 +42,7 @@ const Login = () => {
         <p>Username</p>
         <input 
         type="text"
-        placeholder="Username..."
+        placeholder="Username"
         onChange={(e) => {
           setUsername(e.target.value)
         }}
@@ -52,7 +52,7 @@ const Login = () => {
         <p>Password</p>
         <input 
         type="password"
-        placeholder="Password..."
+        placeholder="Password"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
