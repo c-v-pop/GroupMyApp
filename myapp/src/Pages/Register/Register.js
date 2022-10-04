@@ -10,7 +10,6 @@ const RegisterForm = () => {
     const navigate = useNavigate();
 
     const saveUser = async (e) => {
-        console.log('User created')
         e.preventDefault();
         if(name === "" || password === "")
         {
@@ -37,8 +36,8 @@ const RegisterForm = () => {
         <form onSubmit={ saveUser }>
         <div className="cover">
             <h1>REGISTER</h1>
-            <input onChange={ (e) => setName(e.target.value) } type="text" placeholder="username"></input>
-            <input onChange={ (e) => setPassword(e.target.value) } type="password" placeholder="password"></input>
+            <input onChange={ (e) => setName(e.target.value) } type="text" placeholder="username" required></input>
+            <input onChange={ (e) => setPassword(e.target.value) } type="password" placeholder="password" required></input>
             <button className="register-btn">Register</button>
             
             <Link to='/login' className="register-btn">Login</Link>

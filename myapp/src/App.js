@@ -1,5 +1,4 @@
-// import React, { useState } from 'react';
-//import { CreatePost } from './Pages/Login/CreatePost';
+// Import React, { useState } from 'react';
 import './App.css';
 import { Route ,Routes} from 'react-router-dom';
 import useToken from './components/App/useToken';
@@ -15,43 +14,28 @@ import EditUser from './components/EditUser';
 import Dashboard from './components/Dashboard/Dashboard';
 import Preferences from './components/Preferences/Preferences';
 import Logout from './components/Logout/Logout';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 //
 
 function App() {
   
-  const { token, setToken, deleteToken } = useToken();
-
-  if(!token)   {
+  const { setToken, deleteToken } = useToken();
+  
     return(
       <div>
       <Routes >
       <Route path='/login' element={ <Login setToken={setToken}/>} />
       <Route path='/register' element={ <Register />} />
-      <Route path='/Preferences' element={ <Login setToken={setToken}/> }  />
-      <Route path='/index' element={ <Login setToken={setToken}/>}/>
-      <Route path='/profile' element={ <Login setToken={setToken}/>}/>
-      <Route path='*' element={ <NotFound setToken={setToken}/>} />
-      <Route path='/edit/:id' element={ <Login setToken={setToken}/> }/>
-      <Route path='/Dashboard' element={ <Login setToken={setToken}/> }/>
+      <Route path='/Preferences' element={ <ProtectedRoute> <Preferences /> </ProtectedRoute>}  />
+      <Route path='/index' element={<ProtectedRoute> <Index /></ProtectedRoute>}/>
+      <Route path='/profile' element={<ProtectedRoute> <Profile /></ProtectedRoute>}/>
+      <Route path='*' element={ <NotFound />} />
+      <Route path='/edit/:id' element={ <ProtectedRoute><EditUser /></ProtectedRoute> }/>
+      <Route path='/Dashboard' element={ <ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+      <Route path='/Logout' element={ <Logout deleteToken={deleteToken}/> }/>
       </Routes>
       </div>)
-    }
-    else {
-    return (
-      <div>
-      <Routes>
-      <Route path='/Logout' element={ <Logout deleteToken={deleteToken}/> } />  
-      <Route path='/index' element={ <Index />} />
-      <Route path='/profile' element={ <Profile />} />
-      <Route path='*' element={ <NotFound />} />
-      <Route path='/edit/:id' element={ <EditUser /> } />
-      <Route path='/Dashboard' element={ <Dashboard /> } />
-      <Route path='/Preferences' element={ <Preferences /> } />
-      </Routes>
-      </div>
-      );
-    }
     }
     
     export default App;

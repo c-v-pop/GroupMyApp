@@ -29,7 +29,8 @@ const Login = ({ setToken }) => {
           {
             console.log(setToken);
             setToken(res.data.token);
-            window.location.href = "/Dashboard";
+            sessionStorage.setItem("userId", res.data.userId);
+            window.location.href = "/Index";
           } 
        });
 
@@ -37,7 +38,7 @@ const Login = ({ setToken }) => {
     }
     return (
         <div className="cover"> <h1>LOGIN</h1>
-            <form onSubmit={ login }>
+            <form onSubmit={ login } id="flex-column">
       <label>
         <p>Username</p>
         <input 

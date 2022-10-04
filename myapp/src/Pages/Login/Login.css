@@ -12,6 +12,10 @@ body {
     flex-direction: column;
     gap: 20px;
 }
+#flex-column {
+    display: flex;
+    flex-direction: column;
+}
 h1 {
     font-weight: 850;
     color: darkseagreen;
