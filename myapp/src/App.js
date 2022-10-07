@@ -15,7 +15,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Preferences from './components/Preferences/Preferences';
 import Logout from './components/Logout/Logout';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-
+import Posts from './Pages/Posts/Posts';
 //
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
       <Route path='*' element={ <NotFound />} />
       <Route path='/edit/:id' element={ <ProtectedRoute><EditUser /></ProtectedRoute> }/>
       <Route path='/Dashboard' element={ <ProtectedRoute><Dashboard /></ProtectedRoute>}/>
+      <Route path='/Posts' element={ <ProtectedRoute><Posts /></ProtectedRoute>}/>
       <Route path='/Logout' element={ <Logout deleteToken={deleteToken}/> }/>
       </Routes>
       </div>)
