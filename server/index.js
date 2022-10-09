@@ -1,6 +1,7 @@
 import express from "express";
 import db from "./config/database.js";
-import userRoutes from "./routes/index.js";
+import UserRoutes from "./routes/UserRoutes.js";
+import PostsRoutes from "./routes/PostsRoutes.js";
 import cors from "cors";
  
 const app = express();
@@ -14,7 +15,9 @@ try {
  
 app.use(cors());
 app.use(express.json());
-app.use('/users', userRoutes);
+app.use('/users', UserRoutes);
+app.use('/posts', PostsRoutes);
+
 
 
 app.listen(5000, () => console.log('Server running on port 5000'));
