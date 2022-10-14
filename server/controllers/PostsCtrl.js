@@ -24,7 +24,8 @@ export const getPostById = async (req, res) => {
 }
  
 export const createPost = async (req, res) => {
-    const {title, description, createdBy}= req.body;
+    console.log(req.body)
+    const {title, description, createdBy}= req.body.post;
 
     const username = await user.findOne({
         where: {

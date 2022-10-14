@@ -12,7 +12,6 @@ import Index from './Pages/Index/Index';
 import Profile from './Pages/Profile/Profile';
 import EditUser from './components/EditUser';
 import Dashboard from './components/Dashboard/Dashboard';
-import Preferences from './components/Preferences/Preferences';
 import Logout from './components/Logout/Logout';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 //
@@ -26,7 +25,6 @@ function App() {
     <Routes >
     <Route path='/login' element={ <Login setToken={setToken}/>} />
     <Route path='/register' element={ <Register />} />
-    <Route path='/Preferences' element={ <ProtectedRoute> <Preferences /> </ProtectedRoute>}  />
     <Route path='/index' element={<ProtectedRoute> <Index /></ProtectedRoute>}/>
     <Route path='/profile' element={<ProtectedRoute> <Profile /></ProtectedRoute>}/>
     <Route path='*' element={ <NotFound />} />
