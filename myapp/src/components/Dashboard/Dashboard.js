@@ -106,8 +106,8 @@ export default function Dashboard() {
           <form onSubmit={ createPost }>
           <div className="cover">
           <h1>Create post</h1>
-          <input onChange={ (e) => setTitle(e.target.value) } type="text" placeholder="title" required />
-          <input onChange={ (e) => setDescription(e.target.value) } type="text" placeholder="description" required />
+          <input onChange={ (e) => setTitle(e.target.value) } type="text" placeholder="title"  />
+          <input onChange={ (e) => setDescription(e.target.value) } type="text" placeholder="description"  />
           <div className="input-group">
           <input id='files' type="file" multiple/>
           </div>
