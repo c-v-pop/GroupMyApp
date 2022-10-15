@@ -48,6 +48,11 @@ button {
 #header_logo {
     max-height: 40px;
 }
+.comment_box {
+    resize: none;
+    width: 45%;
+    height: 20%;
+}
 
 @media only screen and (max-width: 600px) {
     

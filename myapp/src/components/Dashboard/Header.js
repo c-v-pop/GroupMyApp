@@ -7,11 +7,11 @@ export const Header = () => {
         <header className='header_container'>
         <img src={icon} alt="world logo" id='header_logo'/>
         </header>
-        <nav className='navbar'>
-        <a href="/EditUser">Profile</a>
+        <div className='navbar'>
+        <a href="/Profile">Profile</a>
         <a href='/Dashboard'>Home</a>
         <a href="/Logout">Logout</a>
-        </nav>
+        </div>
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import Post from "../models/Post.js";
 import user from "../models/UserModel.js"
+import multer from "multer";
 
 export const getAllPosts = async (req, res) => {
     try {
@@ -9,7 +10,7 @@ export const getAllPosts = async (req, res) => {
         res.json({ message: error.message });
     }  
 }
- 
+
 export const getPostById = async (req, res) => {
     try {
         const Post = await Post.findAll({
@@ -22,35 +23,57 @@ export const getPostById = async (req, res) => {
         res.json({ message: error.message });
     }  
 }
- 
-export const createPost = async (req, res) => {
-    console.log(req.body)
-    const {title, description, createdBy}= req.body.post;
 
-    const username = await user.findOne({
-        where: {
-            id: createdBy
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
+
+const upload = multer({storage}).single('file');
+
+export const createPost = async (req, res) => {
+    
+    upload(req, res, async (err) => {       
+        if(err) {
+            console.log('error', err);
         }
-    });
-    console.log(username.name)
-    try {
-        await Post.create({
-            title: title,
-            description: description,
-            createdBy: username.name
+        const  path = res.req.file.path
+        console.log(res.req.file)
+        console.log(res.req.body.title);
+        const {title, description, createdBy}= res.req.body;
+        
+        const username = await user.findOne({
+            where: {
+                id: createdBy
+            }
         });
-        res.json({
-            "message": "Post Created",
-             errors:false
-        });
-    } catch (error) {
-        res.json({ 
-            message: error.message, 
-            errors:true 
-        });
-    }  
+        console.log(username.name)
+        try {
+            await Post.create({
+                title: title,
+                description: description,
+                createdBy: username.name,
+                imageurl: path
+            });
+            res.json({
+                "message": "Post Created",
+                errors:false
+            });
+        } catch (error) {
+            res.json({ 
+                message: error.message, 
+                errors:true 
+            });
+        }  
+    })
+    
+    
 }
- 
+
 export const updatePost = async (req, res) => {
     try {
         await Post.update(req.body, {
@@ -65,7 +88,7 @@ export const updatePost = async (req, res) => {
         res.json({ message: error.message });
     }  
 }
- 
+
 export const deletePost = async (req, res) => {
     try {
         await Post.destroy({
@@ -80,6 +103,3 @@ export const deletePost = async (req, res) => {
         res.json({ message: error.message });
     }  
 }
-
-
-

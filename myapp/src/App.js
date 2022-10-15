@@ -22,7 +22,7 @@ function App() {
   
   return(
     <div>
-    <Routes >
+    <Routes>
     <Route path='/login' element={ <Login setToken={setToken}/>} />
     <Route path='/register' element={ <Register />} />
     <Route path='/index' element={<ProtectedRoute> <Index /></ProtectedRoute>}/>

@@ -3,17 +3,11 @@ import db from "../config/database.js";
 
 const { DataTypes } = Sequelize;
 
-const Posts = db.define('posts', {
-    title:{
-        type: DataTypes.STRING
-    },
-    description:{
+const Comments = db.define('comments', {
+    comments:{
         type: DataTypes.STRING
     },
     createdBy:{
-        type: DataTypes.STRING
-    },
-    imageurl: {
         type: DataTypes.STRING
     }
 },
@@ -22,4 +16,4 @@ const Posts = db.define('posts', {
 });
 
 
-export default Posts;
+export default Comments;
