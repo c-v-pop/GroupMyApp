@@ -54,3 +54,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 npm run build fails to minify
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+Database with relations
+
+![image](https://user-images.githubusercontent.com/61190539/209656880-b2b9fe0c-2066-4da6-bbf2-2932330ccbb8.png)
+
