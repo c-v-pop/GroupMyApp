@@ -1,34 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Comment = () => {
+
+const Comment = (props) => {
     
     const [comments, setComment] = useState("");
-    const [addComment, setAddComment] = useState("");
+    const [Postcomments, setPostComment] = useState([]);
 
     const postComment = async (e) => {
-      e.preventDefault();    
-      let comment = { "comments": comments, "createdBy": sessionStorage.getItem('userId')}
-      if(comments === "") {
-        alert('Insert Comment')
-      }
-      else {
-        await axios.post('http://localhost:5000/comments', 
-        {comment})
-        
-        .then((res) => {
-          console.log(res)
-          if (res.data.errors)
-          {
-            console.log(res.data.message);
-          }
-        });
-      }
-    }
 
+      const data = new FormData();
+
+      data.append("comments", comments.comments)
+      data.append("createdBy", sessionStorage.getItem('userId'))
+
+      let comment = {
+        "comments": comments,
+        "createdBy": sessionStorage.getItem('userId'),
+        'postId' : props.postId
+      }
+      await axios.post('http://localhost:5000/comments', 
+      comment, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((res) => {
+        if (res.data.errors)
+        {
+          console.log(res.data.message);
+        }
+      });
+    }
+    useEffect( ()=>{
+
+      axios.get('http://localhost:5000/comments/'+props.postId).then(response=>{
+      setPostComment(response.data)
+      }).catch(err=> console.log(err))
+    },[])
     return (
+      <div>
+          <ul>
+            {Postcomments.map(comment => <li key={comment.id}>{comment.comments}</li>)}
+          </ul>
       <form onSubmit={postComment}>
-        <textarea
+        <input
           type="text"
           placeholder="Write something..."
           className="comment_box"
@@ -38,6 +54,7 @@ const Comment = () => {
         />
         <button type="submit">Submit</button>
       </form>
+      </div>
     );
   };
   

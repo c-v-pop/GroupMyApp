@@ -12,10 +12,14 @@ button {
     justify-content: center;
 }
 .post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: bisque;
-    margin: 20px 0 10px 0;
     border-radius: 1em;
     width: 480px;
+    margin: 10px 50px 10px 0px;
+    gap: 30px;
 }
 #files {
     height: 100%;
@@ -53,7 +57,41 @@ button {
     width: 45%;
     height: 20%;
 }
-
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: bisque;
+    margin: 0px 40% 0% 40%;
+    padding: 50px;
+    border-radius: 3em;
+}
+.field {
+    margin: 0px 17%;
+}
+img {
+    max-width: 100%;
+}
+.delete-btn {
+    width: 100%;
+    margin-top: 20px;
+    height: 60px;
+    background-color: white;
+    font: 800;
+    color: red;
+    cursor: pointer;
+    border-radius: 2em;
+    transition: 0.5s linear;
+}
+.delete-btn:hover {
+    transform: scale(1.2);
+    font-size: larger;
+    color: white;
+    background-color: red;
+    border-radius: 0;
+}
 @media only screen and (max-width: 600px) {
     
     body {
@@ -61,5 +99,22 @@ button {
     flex-direction: column;
     justify-content: center;
     margin-left: 2%
+}
+.post-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: bisque;
+    border-radius: 1em;
+    max-width: 95%;
+    margin: 10px 6px 10px 0px;
+    gap: 30px;
+}
+.topbar {
+    flex-direction: column;
+    gap: 30px;
+}
+.topbar a {
+    margin: 0px 15px 0px 15px;
 }
 }

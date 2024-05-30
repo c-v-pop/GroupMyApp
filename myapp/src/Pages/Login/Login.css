@@ -18,7 +18,7 @@ h1 {
     background-position: 0px 130px;
     width: 30em;
     height: 35em;
-    margin-left: 37.4%;
+    margin-left: 34.7%;
     position: relative;
     border-radius: 1em;
     box-shadow: 0 0.28em 1.550em darkseagreen;
@@ -57,4 +57,11 @@ input:focus{
 .redirect_button:hover {
     transform: scale(1.20);
     transition: 0.7s ease-in;
+}
+
+@media only screen and (max-width: 600px) {
+    .cover {
+        margin: 0;
+        max-width: 98%;
+    }
 }

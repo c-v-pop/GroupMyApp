@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Comment from '../Comments/Comment';
 
+
 export default function Dashboard() {
   
   let posts_HTML = "";
@@ -15,7 +16,7 @@ export default function Dashboard() {
 
   const createPost = async (e) => {
 
-    e.preventDefault();      
+    // e.preventDefault();      
 
     const files = document.getElementById("files");
     const data = new FormData();
@@ -55,8 +56,8 @@ export default function Dashboard() {
       });
     }}
     
-    useEffect(() => { // useEffect hook
-      setTimeout(() => { // simulate a delay
+    useEffect(() => { 
+      setTimeout(() => { 
         
         axios.get("http://localhost:5000/posts")
         
@@ -79,13 +80,14 @@ export default function Dashboard() {
       posts_HTML = posts.map((post, index) => {
         
         return (
-          <div id='center-page'>
-          <div key={index} className="post-container">
+          <div id='center-page' key={post.id}>
+          <div  className="post-container">
           <div>{post.title}</div>
           <div>{post.description}</div>
           <div>{post.createdBy}</div>
-          <img url={post.imageurl} />
-          <Comment />
+          <div>{post.updatedAt}</div>
+          <img src={post.imageurl} />
+          <Comment  postId={post.id}/>
           </div>
           </div>
           )
